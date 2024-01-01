@@ -3,8 +3,8 @@ class ReportsController < ApplicationController
   
     # GET /reports.
     def index
-      @reports = Report.all
-      render json: @reports
+      @reports = Report.includes(:user).all
+      render json: @reports, each_serializer: ReportSerializer
     end
   
     # GET /reports/:id.
